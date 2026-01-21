@@ -1,5 +1,5 @@
 // ========================================
-// АКАДЕМИЯ ПОБЕДЫ - JavaScript
+// АКАДЕМИЯ ПОБЕДЫ - JavaScript (v2)
 // ========================================
 
 (function() {
@@ -202,7 +202,7 @@
     }
 
     // ========================================
-    // SCROLL INDICATOR
+    // SCROLL INDICATOR (v2 CHANGES)
     // ========================================
 
     function initScrollIndicator() {
@@ -212,11 +212,12 @@
         let hidden = false;
 
         function handleScroll() {
-            if (window.scrollY > 100 && !hidden) {
+            // v2: Hide earlier (at 80px instead of 100px) for better UX
+            if (window.scrollY > 80 && !hidden) {
                 scrollIndicator.style.opacity = '0';
                 scrollIndicator.style.transform = 'translateY(20px)';
                 hidden = true;
-            } else if (window.scrollY <= 100 && hidden) {
+            } else if (window.scrollY <= 80 && hidden) {
                 scrollIndicator.style.opacity = '1';
                 scrollIndicator.style.transform = 'translateY(0)';
                 hidden = false;
@@ -305,7 +306,7 @@
 
         // Initialize all components
         initLoadingAnimations();
-        initScrollAnimations();
+        initScrollAnimations()
         initParallax();
         initCardEffects();
         initNavLinks();
@@ -365,6 +366,11 @@
         
         .hero-image {
             will-change: transform;
+        }
+        
+        /* v2: Ensure scroll indicator doesn't block interactions */
+        .scroll-indicator {
+            pointer-events: none;
         }
         
         @media (prefers-reduced-motion: reduce) {
